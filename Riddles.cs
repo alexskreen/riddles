@@ -50,11 +50,6 @@ public class Riddle
 {
   public string Question;
   public string Answer;
-
-  // public bool CorrectAnswer(string userInput)
-  // {
-  //   return (userInput.Contains(Answer));
-  // }
 }
 
 public class Program
@@ -81,7 +76,7 @@ public class Program
     void AskAnotherQuestion()
     {
       Random rnd = new Random();
-      int intRiddle = rnd.Next(3);
+      int intRiddle = rnd.Next(Riddles.Count);
 
       Console.WriteLine(Riddles[intRiddle].Question);
       string userInput = Console.ReadLine();
