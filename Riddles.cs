@@ -51,10 +51,10 @@ public class Riddle
   public string Question;
   public string Answer;
 
-  public bool CorrectAnswer(string userInput)
-  {
-    return (userInput.Contains(Answer));
-  }
+  // public bool CorrectAnswer(string userInput)
+  // {
+  //   return (userInput.Contains(Answer));
+  // }
 }
 
 public class Program
@@ -75,10 +75,36 @@ public class Program
 
     List<Riddle> Riddles = new List<Riddle>() { question1, question2, question3 };
 
-    Random rnd = new Random();
-    int intRiddle = rnd.Next(3);
+    AskAnotherQuestion();
 
-    Console.WriteLine(Riddles[intRiddle].Question);
-    string userInput = Console.ReadLine();
+
+    void AskAnotherQuestion()
+    {
+      Random rnd = new Random();
+      int intRiddle = rnd.Next(3);
+
+      Console.WriteLine(Riddles[intRiddle].Question);
+      string userInput = Console.ReadLine();
+
+      if (userInput.Contains(Riddles[intRiddle].Answer))
+      {
+          Console.WriteLine("Correct!");
+          Console.WriteLine("Would you like to answer another question? If yes, type 'y', if no, type 'n'");
+          string anotherQuestion = Console.ReadLine().ToLower();
+          if (anotherQuestion == "y")
+          {
+            AskAnotherQuestion();
+          }
+          else
+          {
+            Console.WriteLine("Thanks for playing!");
+          }
+      }
+      else
+      {
+          Console.WriteLine("You've been eaten by the Sphinx!");
+      }
+    }
+
   }
 }
